@@ -1,0 +1,3 @@
+import {NextRequest,NextResponse} from 'next/server'
+export function middleware(req:NextRequest){const path=req.nextUrl.pathname;const protectedPaths=['/dashboard','/trips','/saved','/profile','/settings','/bookings','/notifications'];const protectedRoute=protectedPaths.some(p=>path===p||path.startsWith(p+'/'));if(protectedRoute&&!req.cookies.get('tripit_session')){const url=req.nextUrl.clone();url.pathname='/login';url.searchParams.set('next',path);return NextResponse.redirect(url)}return NextResponse.next()}
+export const config={matcher:['/dashboard/:path*','/trips/:path*','/saved/:path*','/profile/:path*','/settings/:path*','/bookings/:path*','/notifications/:path*']}

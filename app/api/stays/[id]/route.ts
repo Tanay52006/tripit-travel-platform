@@ -1,0 +1,1 @@
+import {db} from '@/lib/db'; import {ok,fail} from '@/lib/http'; export async function GET(_:Request,{params}:{params:Promise<{id:string}>}){const {id}=await params;const x=await db.stay.findUnique({where:{id},include:{destination:true,rooms:true,reviews:{include:{user:{select:{name:true}}}}}});return x?ok(x):fail('Stay not found',404)}

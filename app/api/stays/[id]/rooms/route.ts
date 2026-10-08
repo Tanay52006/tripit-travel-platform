@@ -1,0 +1,1 @@
+import {db} from '@/lib/db'; import {ok,fail} from '@/lib/http'; export async function GET(_:Request,{params}:{params:Promise<{id:string}>}){const {id}=await params;const x=await db.room.findMany({where:{stayId:id,available:true}});return x.length?ok(x):fail('No rooms available',404)}
