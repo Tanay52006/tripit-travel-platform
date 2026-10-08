@@ -11,7 +11,10 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
     "db:setup": "prisma db push --accept-data-loss && npm run db:seed",
-    "db:reset": "prisma db push --force-reset && npm run db:seed"
+    "db:reset": "prisma db push --force-reset && npm run db:seed",
+    "vercel-build": "prisma generate && prisma db push --accept-data-loss && next build",
+    "typecheck": "tsc --noEmit",
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

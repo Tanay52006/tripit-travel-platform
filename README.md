@@ -37,8 +37,7 @@ Run these commands from the `tripit_work` directory:
 ```powershell
 npm install
 npx prisma generate
-npx prisma migrate dev --name init
-npm run db:seed
+npm run db:reset
 npm run dev
 ```
 
@@ -86,3 +85,10 @@ For a database you want to preserve, use `npm run db:setup` instead of `db:reset
 Demo account: `demo@tripit.local` / `TripIt123!`
 
 If a page says `Request failed`, check the terminal running `npm run dev`; API errors now return a useful message instead of the generic message.
+
+
+## Vercel deployment
+This project intentionally does not require Docker. For Vercel, set `DATABASE_URL` to a hosted PostgreSQL database such as Neon. The repository does not include migration files, so the Vercel build uses `prisma db push --accept-data-loss` to create/update the schema. Seed the hosted database once with `npm run db:seed` while `DATABASE_URL` points to the hosted database.
+
+Vercel Build Command: `npm run vercel-build`
+Environment variables: `DATABASE_URL`, `AUTH_SECRET`, `NEXT_PUBLIC_APP_URL`.

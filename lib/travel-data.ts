@@ -2,17 +2,30 @@ export const image = (id: string, width = 1000, height = 700) => `https://images
 
 export type TravelItem = { id: string; name: string; place: string; price: number; rating: number; image: string; category?: string; description?: string }
 
-export const destinations = [
+const destinationSeed: Array<[string,string,string,string,string]> = [
   ['goa','Goa','India','Sun, sea & slow days','photo-1512343879784-a960bf40e7f2'], ['bali','Bali','Indonesia','Tropical escapes','photo-1537996194471-e657df975ab4'], ['dubai','Dubai','United Arab Emirates','City lights & desert','photo-1512453979798-5ea266f8880c'], ['paris','Paris','France','Romance & culture','photo-1502602898657-3e91760cbb34'], ['singapore','Singapore','Singapore','A city in a garden','photo-1525625293386-3f8f99389edd'], ['maldives','Maldives','Maldives','Blue water, quiet mornings','photo-1514282401047-d79a71a590e8'], ['tokyo','Tokyo','Japan','Neon nights and old lanes','photo-1540959733332-eab4deabeeaf'], ['london','London','United Kingdom','Stories around every corner','photo-1513635269975-59663e0ac1ad']
-].map(([id,name,country,tag,photo]) => ({ id,name,country,tag,image:image(photo as string) }))
+]
+export const destinations: Array<{id:string;name:string;country:string;tag:string;image:string}> = destinationSeed.map(([id,name,country,tag,photo]) => ({ id,name,country,tag,image:image(photo) }))
 
-export const stays: TravelItem[] = [
-  ['postcard-cuelim','The Postcard Cuelim','South Goa, India',18400,4.9,'photo-1566073771259-6a8506099945','Luxury'], ['alila-seminyak','Alila Seminyak','Bali, Indonesia',14800,4.8,'photo-1582719478250-c89cae4dc85b','Beach'], ['ritz-carlton','The Ritz-Carlton','Dubai, UAE',21600,4.9,'photo-1551882547-ff40c63fe5fa','Luxury'], ['aman-tokyo','Aman Tokyo','Tokyo, Japan',29000,4.9,'photo-1564501049412-61c2a3083791','Luxury'], ['capella-singapore','Capella Singapore','Singapore',24800,4.8,'photo-1542314831-068cd1dbfeeb','Nature'], ['le-meurice','Le Meurice','Paris, France',32000,4.7,'photo-1566073771259-6a8506099945','Culture']
-].map(([id,name,place,price,rating,photo,category]) => ({id,name,place,price:price as number,rating:rating as number,image:image(photo as string),category:category as string}))
+const staySeed: [string,string,string,number,number,string,string][] = [
+  ['postcard-cuelim','The Postcard Cuelim','South Goa, India',18400,4.9,'photo-1566073771259-6a8506099945','Luxury'],
+  ['alila-seminyak','Alila Seminyak','Bali, Indonesia',14800,4.8,'photo-1582719478250-c89cae4dc85b','Beach'],
+  ['ritz-carlton','The Ritz-Carlton','Dubai, UAE',21600,4.9,'photo-1551882547-ff40c63fe5fa','Luxury'],
+  ['aman-tokyo','Aman Tokyo','Tokyo, Japan',29000,4.9,'photo-1564501049412-61c2a3083791','Luxury'],
+  ['capella-singapore','Capella Singapore','Singapore',24800,4.8,'photo-1542314831-068cd1dbfeeb','Nature'],
+  ['le-meurice','Le Meurice','Paris, France',32000,4.7,'photo-1566073771259-6a8506099945','Culture']
+]
+export const stays: TravelItem[] = staySeed.map(([id,name,place,price,rating,photo,category]) => ({id,name,place,price,rating,image:image(photo),category}))
 
-export const experiences: TravelItem[] = [
-  ['dudhsagar-waterfall','Dudhsagar Waterfall Trek','Goa, India',2499,4.9,'photo-1500534623283-312aade485b7','Adventure'], ['sunset-catamaran','Sunset Catamaran Cruise','Dubai, UAE',4200,4.8,'photo-1530789253388-582c481c54b0','Water Sports'], ['ubud-rice-terrace','Ubud Rice Terrace Walk','Bali, Indonesia',1850,4.9,'photo-1539367628448-4bc5c9d171c8','Nature'], ['old-goa-food-walk','Old Goa Food Walk','Goa, India',1800,4.7,'photo-1552566626-52f8b828add9','Food'], ['paris-after-dark','Paris After Dark','Paris, France',3200,4.8,'photo-1502602898657-3e91760cbb34','Culture'], ['desert-safari','Red Dune Desert Safari','Dubai, UAE',3900,4.8,'photo-1548013146-72479768bada','Adventure']
-].map(([id,name,place,price,rating,photo,category]) => ({id,name,place,price:price as number,rating:rating as number,image:image(photo as string),category:category as string}))
+const experienceSeed: [string,string,string,number,number,string,string][] = [
+  ['dudhsagar-waterfall','Dudhsagar Waterfall Trek','Goa, India',2499,4.9,'photo-1500534623283-312aade485b7','Adventure'],
+  ['sunset-catamaran','Sunset Catamaran Cruise','Dubai, UAE',4200,4.8,'photo-1530789253388-582c481c54b0','Water Sports'],
+  ['ubud-rice-terrace','Ubud Rice Terrace Walk','Bali, Indonesia',1850,4.9,'photo-1539367628448-4bc5c9d171c8','Nature'],
+  ['old-goa-food-walk','Old Goa Food Walk','Goa, India',1800,4.7,'photo-1552566626-52f8b828add9','Food'],
+  ['paris-after-dark','Paris After Dark','Paris, France',3200,4.8,'photo-1502602898657-3e91760cbb34','Culture'],
+  ['desert-safari','Red Dune Desert Safari','Dubai, UAE',3900,4.8,'photo-1548013146-72479768bada','Adventure']
+]
+export const experiences: TravelItem[] = experienceSeed.map(([id,name,place,price,rating,photo,category]) => ({id,name,place,price,rating,image:image(photo),category}))
 
 export const money = (value: number) => `₹${value.toLocaleString('en-IN')}`
 export const findDestination = (id: string) => destinations.find((item) => item.id === id) ?? destinations[0]
